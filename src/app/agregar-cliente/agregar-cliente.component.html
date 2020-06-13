@@ -1,0 +1,80 @@
+<div class="container mt-4">
+  <form [formGroup]="formularioCliente">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" class="form-control" formControlName="nombre" placeholder="Ingresa tu nombre">
+          <div *ngIf="formularioCliente.controls['nombre'].invalid && formularioCliente.controls['nombre'].dirty"
+          class="alert alert-danger" role="alert">
+          <span *ngIf="formularioCliente.controls['nombre'].errors.required">Nombre es requerido</span>
+        </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label>Apellido</label>
+          <input type="text" class="form-control" formControlName="apellido" placeholder="Ingresa tu apellido">
+          <div *ngIf="formularioCliente.controls['apellido'].invalid && formularioCliente.controls['apellido'].dirty"
+            class="alert alert-danger" role="alert">
+            <span *ngIf="formularioCliente.controls['apellido'].errors.required">Apellido es requerido</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label>Correo</label>
+          <input type="email" class="form-control" formControlName="correo" placeholder="Ingresa tu email">
+          <div *ngIf="formularioCliente.controls['correo'].invalid && formularioCliente.controls['correo'].dirty"
+            class="alert alert-danger" role="alert">
+            <span *ngIf="formularioCliente.controls['correo'].errors.required">Correo es requerido</span>
+            <span *ngIf="formularioCliente.controls['correo'].errors.correo">Correo no valido</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label>CURP</label>
+          <input type="text" class="form-control" formControlName="curp" placeholder="Ingresa tu curp">
+          <div *ngIf="formularioCliente.controls['curp'].invalid && formularioCliente.controls['curp'].dirty"
+            class="alert alert-danger" role="alert">
+            <span *ngIf="formularioCliente.controls['curp'].errors.required">CRUP es requerido</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label>Fecha Nacimiento</label>
+          <input type="date" class="form-control" formControlName="fechaNacimiento" placeholder="Ingresa tu fecha de Nacimiento">
+          <div *ngIf="formularioCliente.controls['fechaNacimiento'].invalid && formularioCliente.controls['fechaNacimiento'].dirty"
+            class="alert alert-danger" role="alert">
+            <span *ngIf="formularioCliente.controls['fechaNacimiento'].errors.required">Fecha de nacimiento es requerido</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label>Telefono</label>
+          <input type="tel" class="form-control" formControlName="telefono" placeholder="Ingresa tu Telefono">
+          <div *ngIf="formularioCliente.controls['telefono'].invalid && formularioCliente.controls['telefono'].dirty"
+            class="alert alert-danger" role="alert">
+            <span *ngIf="formularioCliente.controls['telefono'].errors.required">Telefono es requerido</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label>Imagen</label>
+          <input type="file" (change)="subirImagen($event)" class="form-control-file" formControlName="url" placeholder="Sube tu imagen">
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <progressbar [value]="porcentajeSubida" type="danger" [striped]="true">{{porcentajeSubida}}%</progressbar>
+      </div>
+      <br>
+      <br>
+      <button *ngIf="!editable" class="btn btn-primary" [disabled]="formularioCliente.invalid && !urlImagen" (click)="agregar()">Guardar</button>
+      <button *ngIf="editable" class="btn btn-primary" [disabled]="formularioCliente.invalid && !urlImagen" (click)="editar()" >Editar</button>
+    </div>
+  </form>
+</div>
